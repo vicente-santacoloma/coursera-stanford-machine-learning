@@ -6,6 +6,7 @@ function [J, grad] = costFunctionReg(theta, X, y, lambda)
 
 % Initialize some useful values
 m = length(y); % number of training examples
+n = length(theta)
 
 % You need to return the following variables correctly 
 J = 0;
@@ -17,10 +18,13 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+[J, grad] = costFunction(theta, X, y)
 
+regularized_theta = theta(2:n)
 
+J = J + (lambda / (2 * m)) * (regularized_theta' * regularized_theta)
 
-
+grad(2:n) = grad(2:n) + (lambda / m) * regularized_theta
 
 % =============================================================
 
