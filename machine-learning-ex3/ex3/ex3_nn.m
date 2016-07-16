@@ -1,4 +1,4 @@
-%% Machine Learning Online Class - Exercise 3 | Part 2: Neural Networks
+load('ex3data1.mat');%% Machine Learning Online Class - Exercise 3 | Part 2: Neural Networks
 
 %  Instructions
 %  ------------
