@@ -62,30 +62,58 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Input Layer
+a1 = [ones(m, 1) X];
 
+% Hidden Layer
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
+a2 = [ones(m, 1) a2];
 
+% Output Layer
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
 
+h = a3;
 
+l1 = log(h);
+l2 = log(1 - h);
 
+Y = bsxfun(@eq, y, 1:num_labels);
 
+j = (-Y .* l1) - ((1 - Y) .* l2);
 
+J = (1 / m) * sum(j(:));
 
+theta1 = Theta1(:, 2 : end);
+theta2 = Theta2(:, 2 : end);
 
+square_theta1 = theta1 .^ 2;
+square_theta2 = theta2 .^ 2;
 
-
-
-
-
-
-
-
+J = J + (lambda / (2 * m)) * (sum(square_theta1(:)) + sum(square_theta2(:)));
 
 % -------------------------------------------------------------
+
+delta3 = h - Y;
+
+a2_grad = sigmoidGradient(z2);
+
+delta2 = (delta3 * theta2) .* a2_grad;
+
+Delta1 = delta2' * a1;
+
+Delta2 = delta3' * a2;
+
+Theta1(:, 1) = 0;
+Theta1_grad = (1 / m) * Delta1 + (lambda / m) * Theta1;
+
+Theta2(:, 1) = 0;
+Theta2_grad = (1 / m) * Delta2 + (lambda / m) * Theta2;
 
 % =========================================================================
 
 % Unroll gradients
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
-
 
 end
