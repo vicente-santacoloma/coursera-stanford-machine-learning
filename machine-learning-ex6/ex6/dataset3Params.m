@@ -23,12 +23,30 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+testVec = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 
+minError = realmax;
 
-
-
-
-
+for i = 1:length(testVec)
+    CTemp = testVec(i);
+    
+    for j = 1:length(testVec)
+        sigmaTemp = testVec(j);
+        
+        model = svmTrain(X, y, CTemp, @(x1, x2) gaussianKernel(x1, x2, sigmaTemp)); 
+        
+        predictions = svmPredict(model, Xval);
+        
+        error = mean(double(predictions ~= yval));
+        
+        if error < minError
+            minError = error;
+            C = CTemp;
+            sigma = sigmaTemp;
+        end
+    end
+end
+    
 % =========================================================================
 
 end
