@@ -24,4 +24,3 @@ end
 title(sprintf('Iteration number %d', i))
 
 end
-

@@ -65,7 +65,6 @@ fprintf('   [ 7.119387 3.616684 ]\n\n');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-
 %% =================== Part 3: K-Means Clustering ======================
 %  After you have completed the two functions computeCentroids and
 %  findClosestCentroids, you have all the necessary pieces to run the
@@ -137,7 +136,6 @@ initial_centroids = kMeansInitCentroids(X, K);
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-
 %% ================= Part 5: Image Compression ======================
 %  In this part of the exercise, you will use the clusters of K-Means to
 %  compress an image. To do this, we first find the closest clusters for
@@ -171,4 +169,3 @@ title(sprintf('Compressed, with %d colors.', K));
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
-

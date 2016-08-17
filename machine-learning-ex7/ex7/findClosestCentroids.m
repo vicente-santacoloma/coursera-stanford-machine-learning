@@ -21,13 +21,14 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+for i = 1:length(X)
+    distances = bsxfun(@minus, X(i, :), centroids);
+        
+    square_norms = sum(distances.^2, 2);
 
-
-
-
-
+    [min_square_norm, idx(i)] = min(square_norms);
+end
 
 % =============================================================
 
 end
-
